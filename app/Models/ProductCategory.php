@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
     use HasFactory;
+    public $incrementing = false;
+    protected $guarded = [];
+
+    public function product(){
+        return $this->hasMany(Product::class,'id_category');
+    }
 }
