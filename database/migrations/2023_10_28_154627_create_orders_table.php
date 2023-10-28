@@ -18,6 +18,11 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignUuid('id_admin')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignUuid('id_user')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');

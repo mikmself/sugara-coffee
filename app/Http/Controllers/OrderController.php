@@ -40,6 +40,7 @@ class OrderController extends Controller
         $validator = Validator::make($request->all(), [
             'id_product' => 'required|exists:products,id',
             'id_admin' => 'required|exists:users,id',
+            'id_user' => 'required|exists:users,id',
             'order_category' => 'required',
             'total_product' => 'required|numeric',
             'total_price' => 'required|numeric',
@@ -55,6 +56,7 @@ class OrderController extends Controller
             $data = $request->only([
                 'id_product',
                 'id_admin',
+                'id_user',
                 'order_category',
                 'total_product',
                 'total_price',
@@ -90,6 +92,7 @@ class OrderController extends Controller
         $validator = Validator::make($request->all(), [
             'id_product' => 'required|exists:products,id',
             'id_admin' => 'required|exists:users,id',
+            'id_user' => 'required|exists:users,id',
             'order_category' => 'required',
             'total_product' => 'required|numeric',
             'total_price' => 'required|numeric',
@@ -108,6 +111,7 @@ class OrderController extends Controller
                 $data = $request->only([
                     'id_product',
                     'id_admin',
+                    'id_user',
                     'order_category',
                     'total_product',
                     'total_price',
