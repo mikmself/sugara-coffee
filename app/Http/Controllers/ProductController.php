@@ -58,13 +58,13 @@ class ProductController extends Controller
             $data['id'] = $id;
 
             $image = $request->file('image');
-            $imageFileName = $id . '.' . $image->getClientOriginalExtension();
+            $imageFileName = Str::random(30) . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('product_images'), $imageFileName);
             $data['image'] = $imageFileName;
 
             $dataCreated = Product::create($data);
             if ($dataCreated) {
-                return redirect(route('product.index'))->with('success', 'Produk berhasil dibuat.');
+                return redirect(route('index-dashboard-product'))->with('success', 'Produk berhasil dibuat.');
             } else {
                 return back()->with('error', 'Produk gagal dibuat');
             }
@@ -105,17 +105,16 @@ class ProductController extends Controller
                 ]);
                 if ($request->hasFile('image')) {
                     $image = $request->file('image');
-                    $imageFileName = $id . '.' . $image->getClientOriginalExtension();
+                    $imageFileName = Str::random(30) . '.' . $image->getClientOriginalExtension();
                     $image->move(public_path('product_images'), $imageFileName);
                     $data['image'] = $imageFileName;
                     if (File::exists(public_path('product_images/' . $product->image))) {
                         File::delete(public_path('product_images/' . $product->image));
                     }
                 }
-
                 $dataUpdated = $product->update($data);
                 if ($dataUpdated) {
-                    return redirect(route('product.index'))->with('success', 'Produk berhasil diedit.');
+                    return redirect(route('index-dashboard-product'))->with('success', 'Produk berhasil diedit.');
                 } else {
                     return back()->with('error', 'Produk gagal diedit');
                 }
@@ -134,6 +133,6 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return redirect(route('product.index'))->with('success', 'Produk berhasil dihapus.');
+        return redirect(route('index-dashboard-product'))->with('success', 'Produk berhasil dihapus.');
     }
 }

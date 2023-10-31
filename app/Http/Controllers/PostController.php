@@ -60,7 +60,7 @@ class PostController extends Controller
 
             $dataCreated = Post::create($data);
             if ($dataCreated) {
-                return redirect(route('post.index'))->with('success', 'Post berhasil dibuat.');
+                return redirect(route('index-dashboard-post'))->with('success', 'Post berhasil dibuat.');
             } else {
                 return back()->with('error', 'Post gagal dibuat');
             }
@@ -95,7 +95,6 @@ class PostController extends Controller
                     'title',
                     'content',
                 ]);
-
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageFileName = $id . '.' . $image->getClientOriginalExtension();
@@ -109,7 +108,7 @@ class PostController extends Controller
 
             $dataUpdated = $post->update($data);
             if ($dataUpdated) {
-                return redirect(route('post.index'))->with('success', 'Post berhasil diedit.');
+                return redirect(route('index-dashboard-post'))->with('success', 'Post berhasil diedit.');
             } else {
                 return back()->with('error', 'Post gagal diedit');
             }
@@ -123,12 +122,10 @@ public function destroy($id)
     if (!$post) {
         return back()->with('error', 'Data post tidak ditemukan');
     }
-
     if (File::exists(public_path('post_images/' . $post->image))) {
         File::delete(public_path('post_images/' . $post->image));
     }
-
     $post->delete();
-    return redirect(route('post.index'))->with('success', 'Post berhasil dihapus.');
+    return redirect(route('index-dashboard-post'))->with('success', 'Post berhasil dihapus.');
 }
 }

@@ -48,7 +48,7 @@ class ProductCategoryController extends Controller
             $data['id'] = $id;
             $dataCreated = ProductCategory::create($data);
             if ($dataCreated) {
-                return redirect(route('product_category.index'))->with('success', 'Kategori produk berhasil dibuat.');
+                return redirect(route('index-dashboard-product-category'))->with('success', 'Kategori produk berhasil dibuat.');
             } else {
                 return back()->with('error', 'Kategori produk gagal dibuat');
             }
@@ -81,7 +81,7 @@ class ProductCategoryController extends Controller
                 ]);
                 $dataUpdated = $category->update($data);
                 if ($dataUpdated) {
-                    return redirect(route('product_category.index'))->with('success', 'Kategori produk berhasil diedit.');
+                    return redirect(route('index-dashboard-product-category'))->with('success', 'Kategori produk berhasil diedit.');
                 } else {
                     return back()->with('error', 'Kategori produk gagal diedit');
                 }
@@ -96,6 +96,6 @@ class ProductCategoryController extends Controller
             return back()->with('error', 'Data kategori produk tidak ditemukan');
         }
         $category->delete();
-        return redirect(route('product_category.index'))->with('success', 'Kategori produk berhasil dihapus.');
+        return redirect(route('index-dashboard-product-category'))->with('success', 'Kategori produk berhasil dihapus.');
     }
 }

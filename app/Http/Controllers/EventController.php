@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 
 class EventController extends Controller
 {
@@ -36,96 +35,58 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_creator' => 'required|exists:users,id',
             'title' => 'required',
-            'content' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Pengaturan gambar
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
-
         if ($validator->fails()) {
             return back()->with('errors', $validator->errors());
-        } else {
-            $id = Str::uuid();
-            $data = $request->only([
-                'id_creator',
-                'title',
-                'content',
-                'start_date',
-                'end_date',
-            ]);
-            $data['id'] = $id;
-
-            // Mengelola gambar
-            $image = $request->file('image');
-            $imageFileName = $id . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('event_images'), $imageFileName);
-            $data['image'] = $imageFileName;
-
-            $dataCreated = Event::create($data);
-            if ($dataCreated) {
-                return redirect(route('event.index'))->with('success', 'Event berhasil dibuat.');
-            } else {
-                return back()->with('error', 'Event gagal dibuat');
+        }
+        $event = new Event;
+        $event->id = Str::uuid();
+        $event->title = $request->input('title');
+        $event->save();
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $event->addMedia($image)->toMediaCollection('images');
             }
         }
+        return redirect()->route('index-dashboard-event');
     }
+
 
     public function edit($id)
     {
         $event = Event::find($id);
-        $users = User::all();
-        return view('dashboard.event.edit', compact('event', 'users'));
+        return view('dashboard.event.edit', compact('event'));
     }
 
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'id_creator' => 'required|exists:users,id',
             'title' => 'required',
-            'content' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
-
         if ($validator->fails()) {
             return back()->with('errors', $validator->errors());
-        } else {
-            $event = Event::find($id);
-            if (!$event) {
-                return back()->with('error', 'Data event tidak ditemukan');
-            } else {
-                $data = $request->only([
-                    'id_creator',
-                    'title',
-                    'content',
-                    'start_date',
-                    'end_date'
-                ]);
-
-                if ($request->hasFile('image')) {
-                    $image = $request->file('image');
-                    $imageFileName = $id . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('event_images'), $imageFileName);
-                    $data['image'] = $imageFileName;
-
-                    // Menghapus gambar lama
-                    if (File::exists(public_path('event_images/' . $event->image))) {
-                        File::delete(public_path('event_images/' . $event->image));
-                    }
-                }
-
-                $dataUpdated = $event->update($data);
-                if ($dataUpdated) {
-                    return redirect(route('event.index'))->with('success', 'Event berhasil diedit.');
-                } else {
-                    return back()->with('error', 'Event gagal diedit');
-                }
+        }
+        $event = Event::find($id);
+        if (!$event) {
+            return back()->with('error', 'Data event tidak ditemukan');
+        }
+        $data = $request->only('title');
+        if ($request->hasFile('images')) {
+            $event->clearMediaCollection('images');
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $event->addMedia($image)->toMediaCollection('images');
             }
         }
+        $event->update($data);
+        return redirect(route('index-dashboard-event'))->with('success', 'Event berhasil diedit.');
     }
+
 
     public function destroy($id)
     {
@@ -133,12 +94,9 @@ class EventController extends Controller
         if (!$event) {
             return back()->with('error', 'Data event tidak ditemukan');
         }
-
-        if (File::exists(public_path('event_images/' . $event->image))) {
-            File::delete(public_path('event_images/' . $event->image));
-        }
-
+        $event->clearMediaCollection('images');
         $event->delete();
-        return redirect(route('event.index'))->with('success', 'Event berhasil dihapus.');
+        return redirect(route('index-dashboard-event'))->with('success', 'Event berhasil dihapus.');
     }
+
 }

@@ -54,7 +54,7 @@ class EmployeeController extends Controller
             $data['id'] = $id;
             $dataCreated = Employee::create($data);
             if ($dataCreated) {
-                return redirect(route('employee.index'))->with('success', 'Employee berhasil dibuat.');
+                return redirect(route('index-dashboard-employee'))->with('success', 'Employee berhasil dibuat.');
             } else {
                 return back()->with('error', 'Employee gagal dibuat');
             }
@@ -93,7 +93,7 @@ class EmployeeController extends Controller
                 ]);
                 $dataUpdated = $employee->update($data);
                 if ($dataUpdated) {
-                    return redirect(route('employee.index'))->with('success', 'Employee berhasil diedit.');
+                    return redirect(route('index-dashboard-employee'))->with('success', 'Employee berhasil diedit.');
                 } else {
                     return back()->with('error', 'Employee gagal diedit');
                 }
@@ -108,6 +108,6 @@ class EmployeeController extends Controller
             return back()->with('error', 'Data employee tidak ditemukan');
         }
         $employee->delete();
-        return redirect(route('employee.index'))->with('success', 'Employee berhasil dihapus.');
+        return redirect(route('index-dashboard-employee'))->with('success', 'Employee berhasil dihapus.');
     }
 }

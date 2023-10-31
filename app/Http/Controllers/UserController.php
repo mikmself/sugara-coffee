@@ -53,7 +53,7 @@ class UserController extends Controller
             $data['id'] = $id;
             $dataCreated = User::create($data);
             if ($dataCreated) {
-                return redirect(route('user.index'))->with('success', 'Pengguna berhasil dibuat.');
+                return redirect(route('index-dashboard-user'))->with('success', 'Pengguna berhasil dibuat.');
             } else {
                 return back()->with('error', 'Pengguna gagal dibuat');
             }
@@ -71,7 +71,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'required',
             'level' => 'required',
         ]);
 
@@ -91,7 +90,7 @@ class UserController extends Controller
                 ]);
                 $dataUpdated = $user->update($data);
                 if ($dataUpdated) {
-                    return redirect(route('user.index'))->with('success', 'Pengguna berhasil diedit.');
+                    return redirect(route('index-dashboard-user'))->with('success', 'Pengguna berhasil diedit.');
                 } else {
                     return back()->with('error', 'Pengguna gagal diedit');
                 }
@@ -106,6 +105,6 @@ class UserController extends Controller
             return back()->with('error', 'Data pengguna tidak ditemukan');
         }
         $user->delete();
-        return redirect(route('user.index'))->with('success', 'Pengguna berhasil dihapus.');
+        return redirect(route('index-dashboard-user'))->with('success', 'Pengguna berhasil dihapus.');
     }
 }

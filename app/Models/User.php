@@ -12,12 +12,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
         'level',
         'address',
     ];
+    public $incrementing = false;
     protected $hidden = [
         'password',
         'remember_token',
@@ -27,9 +29,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function event(){
-        return $this->hasMany(Event::class,'id_creator');
-    }
     public function order(){
         return $this->hasMany(Order::class,'id_admin');
     }

@@ -23,15 +23,18 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignUuid('id_user')
+                ->nullable()
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('order_category');
             $table->integer('total_product');
             $table->bigInteger('total_price');
-            $table->string('expedition');
+            $table->string('type_of_service')->comment('Makan Di Tempat, Antar Dekat, Antar Jauh');
+            $table->string('expedition')->nullable();
+            $table->string('type_payment')->comment('Cash, Non Cash');
+            $table->string('proof_of_payment')->nullable();
             $table->string('status');
-            $table->string('proof_of_payment');
             $table->timestamps();
         });
     }
