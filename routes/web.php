@@ -8,11 +8,15 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderOfflineController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
+Route::get('/yearly-revenue', [DashboardController::class, 'getYearlyRevenue']);
 Route::prefix('/admin/dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index-dashboard-user');
         Route::get('/create', [UserController::class, 'create'])->name('create-dashboard-user');
