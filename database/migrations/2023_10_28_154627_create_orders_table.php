@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('id_product')
-                ->constrained('products')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
             $table->foreignUuid('id_admin')
                 ->nullable()
                 ->constrained('users')
@@ -27,10 +23,9 @@ return new class extends Migration
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('order_category');
-            $table->integer('total_product');
+            $table->json('products');
             $table->bigInteger('total_price');
-            $table->string('type_of_service')->comment('Makan Di Tempat, Antar Dekat, Antar Jauh');
+            $table->string('type_of_service')->comment('Dine In, Antar Dekat, Antar Jauh');
             $table->string('expedition')->nullable();
             $table->string('type_payment')->comment('Cash, Non Cash');
             $table->string('proof_of_payment')->nullable();

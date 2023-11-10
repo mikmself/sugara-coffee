@@ -11,9 +11,6 @@ class Product extends Model
     public $incrementing = false;
     protected $guarded = [];
 
-    public function order(){
-        return $this->hasMany(Order::class,'id_product');
-    }
     public function category(){
         return $this->belongsTo(ProductCategory::class,'id_category');
     }

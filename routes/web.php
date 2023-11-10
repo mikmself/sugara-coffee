@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\OrderOfflineController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,5 +60,10 @@ Route::prefix('/admin/dashboard')->group(function () {
         Route::put('/edit/{id}', [PostController::class, 'edit'])->name('edit-dashboard-post');
         Route::patch('/update/{id}', [PostController::class, 'update'])->name('update-dashboard-post');
         Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('delete-dashboard-post');
+    });
+    Route::prefix('order-offline')->group(function () {
+        Route::get('/', [OrderOfflineController::class, 'index'])->name('index-dashboard-order-offline');
+        Route::get('/create', [OrderOfflineController::class, 'create'])->name('create-dashboard-order-offline');
+        Route::post('/store', [OrderOfflineController::class, 'store'])->name('store-dashboard-order-offline');
     });
 });
