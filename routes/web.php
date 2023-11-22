@@ -9,10 +9,19 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderOfflineController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserViewController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('userview.home');
 });
+Route::get('/',[UserViewController::class,'home'])->name('home');
+Route::get('/about',[UserViewController::class,'about'])->name('about');
+Route::get('/event',[UserViewController::class,'event'])->name('event');
+Route::get('/product',[UserViewController::class,'product'])->name('product');
+Route::get('/contact',[UserViewController::class,'contact'])->name('contact');
+Route::get('/article',[UserViewController::class,'article'])->name('article');
+
+
 Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
 Route::get('/yearly-revenue', [DashboardController::class, 'getYearlyRevenue']);
 Route::prefix('/admin/dashboard')->group(function () {
