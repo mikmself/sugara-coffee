@@ -165,5 +165,4 @@
     <script src="/dashboard/assets/js/bootstrap.js"></script>
     <script src="/dashboard/assets/js/app.js"></script>
 </body>
-
 </html>
