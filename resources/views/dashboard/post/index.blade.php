@@ -25,7 +25,7 @@
                                     <tr>
                                         <td class="text-bold-500">{{ $post->title }}</td>
                                         <td>{{ $post->creator->name }}</td>
-                                        <td>{!! $post->content !!}</td>
+                                        <td class="d-block text-truncate">{!! $post->content !!}</td>
                                         <td>
                                             <img src="/post_images/{{$post->image}}" alt="Gambar" width="100">
                                         </td>
