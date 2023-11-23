@@ -362,31 +362,41 @@
                 </div>
             </div>
         </div>
+        <style>
+            .product-title {
+                color: #3F2A20;
+                font-size: 33px;
+            }
+
+            .product-description {
+                color: #B3B3B3;
+            }
+        </style>
         <div class="container">
-            <h2 class="pt-5">Green Bean</h2>
-            <div class="row pt-3">
-                <div class="card mx-auto" style="width: 20rem;">
-                    <img src="/userview/assets/img/product/c1.png" class="card-img-top" alt="...">
+            <h2 class="pt-5">Other Our Product</h2>
+            <div class="row pt-3 d-flex justify-content-between">
+                <div class="card col-md-12 col-lg-3" style="margin-top: 1cm">
+                    <img src="/userview/assets/img/product/c1.png" class="card-img" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Gadog Premium</h5>
-                        <p class="card-text" style="color: #B3B3B3;">robusta gadog hingga premium Sugara Coffee. Kopi  </p>
-                        <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                        <h5 class="card-title product-title">Gadog Premium</h5>
+                        <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
+                        <p class="card-text product-description">Kampung Sugara Coffee</p>
                     </div>
                 </div>
-                <div class="card mx-auto" style="width: 20rem;">
-                    <img src="/userview/assets/img/product/c2.png" class="card-img-top" alt="...">
+                <div class="card col-md-12 col-lg-3" style="margin-top: 1cm">
+                    <img src="/userview/assets/img/product/c2.png" class="card-img" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Kopla Premium</h5>
-                        <p class="card-text" style="color: #B3B3B3;">robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                        <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                        <h5 class="card-title product-title">Kopla Premium</h5>
+                        <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
+                        <p class="card-text product-description">Kampung Sugara Coffee</p>
                     </div>
                 </div>
-                <div class="card mx-auto" style="width: 20rem;">
-                    <img src="/userview/assets/img/product/c3.png" class="card-img-top" alt="...">
+                <div class="card col-md-12 col-lg-3" style="margin-top: 1cm">
+                    <img src="/userview/assets/img/product/c3.png" class="card-img" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Robusta</h5>
-                        <p class="card-text" style="color: #B3B3B3;">robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                        <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                        <h5 class="card-title product-title">Robusta</h5>
+                        <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
+                        <p class="card-text product-description">Kampung Sugara Coffee</p>
                     </div>
                 </div>
             </div>
