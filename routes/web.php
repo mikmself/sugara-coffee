@@ -11,8 +11,8 @@ use App\Http\Controllers\OrderOfflineController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserViewController;
 
-Route::get('/', function () {
-    return view('userview.home');
+Route::get('/detail-article', function () {
+    return view('userview.post-detail');
 });
 Route::get('/',[UserViewController::class,'home'])->name('home');
 Route::get('/about',[UserViewController::class,'about'])->name('about');
@@ -20,6 +20,7 @@ Route::get('/event',[UserViewController::class,'event'])->name('event');
 Route::get('/product',[UserViewController::class,'product'])->name('product');
 Route::get('/contact',[UserViewController::class,'contact'])->name('contact');
 Route::get('/article',[UserViewController::class,'article'])->name('article');
+Route::get('/article/{slug}',[UserViewController::class,'detailArticle'])->name('detail-article');
 
 
 Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
