@@ -31,7 +31,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             let header = document.querySelector('.masthead');
             let image = new Image();
-            image.src = header.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+            image.src = getComputedStyle(header).backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+
             image.onload = function () {
                 let color = getAverageColor(image);
                 let textColor = isDarkColor(color) ? 'white' : 'black';
@@ -40,10 +41,13 @@
         });
         function getAverageColor(image) {
             let canvas = document.createElement('canvas');
+            canvas.width = 1;
+            canvas.height = 1;
             let context = canvas.getContext('2d');
             context.drawImage(image, 0, 0, 1, 1);
             return context.getImageData(0, 0, 1, 1).data;
         }
+
         function isDarkColor(color) {
             let brightness = (color[0] * 299 + color[1] * 587 + color[2] * 114) / 1000;
             return brightness < 128;
