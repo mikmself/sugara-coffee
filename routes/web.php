@@ -26,7 +26,7 @@ Route::get('/article/{slug}',[UserViewController::class,'detailArticle'])->name(
 Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
 Route::get('/yearly-revenue', [DashboardController::class, 'getYearlyRevenue']);
 Route::prefix('/admin/dashboard')->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index-dashboard-user');
         Route::get('/create', [UserController::class, 'create'])->name('create-dashboard-user');

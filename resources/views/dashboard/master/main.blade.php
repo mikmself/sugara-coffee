@@ -11,6 +11,17 @@
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/icon.png" type="image/png">
     <link rel="stylesheet" href="/dashboard/assets/css/shared/iconly.css">
+    <style>
+        img.iconnya {
+            height: 2cm;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            img.iconnya {
+                filter: brightness(0) invert(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +32,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
                             <a href="">
-                                <p><img src="/icon.png" alt="" srcset="" style="height: 2cm"></p>
+                                <p><img src="/icon.png" alt="" srcset="" class="iconnya" style="height: 2cm;" id="logoImage"></p>
                             </a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -64,50 +75,56 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item">
-                            <a href="" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                            <a href="{{route('index-dashboard')}}" class='sidebar-link'>
+                                <i class="bi bi-house-door-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a href="{{route('index-dashboard-order-offline')}}" class='sidebar-link'>
+                                <i class="bi bi-cart-fill"></i>
+                                <span>Offline Order</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="{{route('index-dashboard-product')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-box-fill"></i>
                                 <span>Product</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('index-dashboard-product-category')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-tags-fill"></i>
                                 <span>Product Category</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-bag-fill"></i>
                                 <span>Order</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('index-dashboard-post')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-file-text-fill"></i>
                                 <span>Article</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('index-dashboard-event')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-calendar-fill"></i>
                                 <span>Event</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('index-dashboard-employee')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-person-fill"></i>
                                 <span>Employee</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="{{route('index-dashboard-user')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-people-fill"></i>
                                 <span>User</span>
                             </a>
                         </li>
@@ -162,6 +179,26 @@
             </div>
         </div>
     </div>
+    <script>
+            const logoImage = document.getElementById('logoImage');
+            const toggleDark = document.getElementById('toggle-dark');
+
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                logoImage.style.filter = 'brightness(0) invert(0)';
+            } else {
+                logoImage.style.filter = '';
+            }
+
+            toggleDark.addEventListener('change', function () {
+                if (toggleDark.checked) {
+                    logoImage.style.filter = 'brightness(0) invert(1)';
+                } else {
+                    logoImage.style.filter = 'brightness(0) invert(0)';
+                }
+            });
+    </script>
+
+
     <script src="/dashboard/assets/js/bootstrap.js"></script>
     <script src="/dashboard/assets/js/app.js"></script>
 </body>
