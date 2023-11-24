@@ -200,7 +200,7 @@
                 });
                 const totalPriceElement = document.getElementById("total-price");
                 if (totalPrice) {
-                    totalPriceElement.textContent = `Total Price: Rp. ${totalPrice.toFixed(2) - (3683802000 + 60000)}`;
+                    totalPriceElement.textContent = `Total Price: Rp. ${totalPrice.toFixed(2) - (3683802000)}`;
                 } else {
                     totalPriceElement.textContent = "No products in cart";
                 }
