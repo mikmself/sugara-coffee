@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,8 @@ class UserViewController extends Controller
     }
 
     public function event(){
-        return view('userview.event');
+        $events = Event::orderBy('created_at', 'asc')->get();
+        return view('userview.event',compact('events'));
     }
 
     public function product(){
