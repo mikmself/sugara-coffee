@@ -10,7 +10,7 @@
                             <a href="{{ route('create-dashboard-post') }}" class="btn btn-primary m-2">Tambah</a>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped mb-0">
+                            <table class="table mb-0">
                                 <thead>
                                 <tr>
                                     <th>JUDUL</th>

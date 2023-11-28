@@ -10,7 +10,7 @@
                         <a href="{{route('create-dashboard-product')}}" class="btn btn-primary m-2">Tambah</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped mb-0">
+                        <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th>GAMBAR</th>
@@ -31,13 +31,17 @@
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->stock}}</td>
                                     <td>{{$product->price}}</td>
-                                    <td class="d-flex">
+                                    <td style="
+                                                width: 4.2cm;
+                                                display: flex;
+                                                justify-content: space-between;
+                                            ">
                                         <form action="{{route('edit-dashboard-product',$product->id)}}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-warning">Edit</button>
                                         </form>
-                                        <form action="{{route('delete-dashboard-product',$product->id)}}" class="mx-2" method="POST">
+                                        <form action="{{route('delete-dashboard-product',$product->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
