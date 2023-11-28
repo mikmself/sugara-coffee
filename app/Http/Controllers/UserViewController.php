@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Post;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class UserViewController extends Controller
@@ -45,7 +46,19 @@ class UserViewController extends Controller
     }
 
     public function product(){
-        return view('userview.product');
+        $coffees  = Product::join('product_categories', 'products.id_category', '=', 'product_categories.id')
+            ->where('product_categories.name', 'Produk Kopi')
+            ->select('products.*')
+            ->get();
+        $drinks = Product::join('product_categories', 'products.id_category', '=', 'product_categories.id')
+            ->where('product_categories.name', 'Makanan')
+            ->select('products.*')
+            ->get();
+        $foods = Product::join('product_categories', 'products.id_category', '=', 'product_categories.id')
+            ->where('product_categories.name', 'Minuman')
+            ->select('products.*')
+            ->get();
+        return view('userview.product',compact('coffees','drinks','foods'));
     }
 
 }
