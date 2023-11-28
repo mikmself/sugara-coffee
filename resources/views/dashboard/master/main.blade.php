@@ -74,26 +74,26 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard')) active @endif">
+                            <a href="{{ route('index-dashboard') }}" class='sidebar-link'>
                                 <i class="bi bi-house-door-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-order-offline')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-order-offline')) active @endif">
+                            <a href="{{ route('index-dashboard-order-offline') }}" class='sidebar-link'>
                                 <i class="bi bi-cart-fill"></i>
                                 <span>Offline Order</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-product')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-product')) active @endif">
+                            <a href="{{ route('index-dashboard-product') }}" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
                                 <span>Product</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-product-category')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-product-category')) active @endif">
+                            <a href="{{ route('index-dashboard-product-category') }}" class='sidebar-link'>
                                 <i class="bi bi-tags-fill"></i>
                                 <span>Product Category</span>
                             </a>
@@ -104,26 +104,26 @@
                                 <span>Order</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-post')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-post')) active @endif">
+                            <a href="{{ route('index-dashboard-post') }}" class='sidebar-link'>
                                 <i class="bi bi-file-text-fill"></i>
                                 <span>Article</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-event')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-event')) active @endif">
+                            <a href="{{ route('index-dashboard-event') }}" class='sidebar-link'>
                                 <i class="bi bi-calendar-fill"></i>
                                 <span>Event</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-employee')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-employee')) active @endif">
+                            <a href="{{ route('index-dashboard-employee') }}" class='sidebar-link'>
                                 <i class="bi bi-person-fill"></i>
                                 <span>Employee</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="{{route('index-dashboard-user')}}" class='sidebar-link'>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-user')) active @endif">
+                            <a href="{{ route('index-dashboard-user') }}" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>User</span>
                             </a>

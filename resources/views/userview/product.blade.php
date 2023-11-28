@@ -8,13 +8,14 @@
         <div class="container">
             <h2 class="pt-5">Bibit Kopi</h2>
             <div class="row">
+                @foreach($coffees as $coffee)
                 <div class="col-md-12 col-lg-6 mb-3">
                     <div class="card shadow-0 border rounded-3">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                     <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/1.png"
+                                        <img src="/product_images/{{$coffee->image}}"
                                              class="w-100" />
                                         <a href="#!">
                                             <div class="hover-overlay">
@@ -24,342 +25,101 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <h5>House Bland (Arabica)</h5>
+                                    <h5>{{$coffee->name}}</h5>
                                     <p style="color: #A24B31;
                                     font-family: Open Sans;
                                     font-size: 22.719px;
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 58.000</p>
+                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
                                     <p class="mb-4 mb-md-0">
-                                        Kopi Arabica berasal dari biji kopi Arabica (Coffea arabica), salah satu dari dua spesies utama kopi.
+                                        {{$coffee->description}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/2.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Sugara Coffee Bubuk</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 39.000</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/3.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Organic Brown Sugar</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 41.000</p>
-                                    <p class="mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/4.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Liberika Peny Arang</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 25.000</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/5.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Liberika Natural</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 23.000</p>
-                                    <p class="mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/6.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Liberika Honey 150gr</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 31.500</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="container">
-            <h2 class="pt-5">Green Bean</h2>
+            <h2 class="pt-5">Makanan</h2>
             <div class="row">
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/1.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
+                @foreach($foods as $food)
+                    <div class="col-md-12 col-lg-6 mb-3">
+                        <div class="card shadow-0 border rounded-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                            <img src="/product_images/{{$food->image}}"
+                                                 class="w-100" />
+                                            <a href="#!">
+                                                <div class="hover-overlay">
+                                                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Arabica</h5>
-                                    <p style="color: #A24B31;
+                                    <div class="col-md-9">
+                                        <h5>{{$coffee->name}}</h5>
+                                        <p style="color: #A24B31;
                                     font-family: Open Sans;
                                     font-size: 22.719px;
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 39.000</p>
-                                    <p class="mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
+                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
+                                        <p class="mb-4 mb-md-0">
+                                            {{$coffee->description}}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/2.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
+                @endforeach
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="pt-5">Minuman</h2>
+            <div class="row">
+                @foreach($drinks as $drink)
+                    <div class="col-md-12 col-lg-6 mb-3">
+                        <div class="card shadow-0 border rounded-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                        <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                            <img src="/product_images/{{$drink->image}}"
+                                                 class="w-100" />
+                                            <a href="#!">
+                                                <div class="hover-overlay">
+                                                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Robusta</h5>
-                                    <p style="color: #A24B31;
+                                    <div class="col-md-9">
+                                        <h5>{{$coffee->name}}</h5>
+                                        <p style="color: #A24B31;
                                     font-family: Open Sans;
                                     font-size: 22.719px;
                                     font-style: normal;
                                     font-weight: 700;
                                     line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 39.000</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/2.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
+                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
+                                        <p class="mb-4 mb-md-0">
+                                            {{$coffee->description}}
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <h5>Liberika</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 39.000</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-6 mb-3">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img src="/userview/assets/img/product/2.png"
-                                             class="w-100" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <h5>Brown Sugar</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">Rp 39.000</p>
-                                    <p class=" mb-4 mb-md-0">
-                                        Espresso dari biji kopi khas
-                                        nusantara dipadukan susu
-                                        oat gluten-free dan sensasi
-                                        nutty dari hazelnut.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <style>
