@@ -25,7 +25,7 @@ Route::get('/article/{slug}',[UserViewController::class,'detailArticle'])->name(
 
 Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
 Route::get('/yearly-revenue', [DashboardController::class, 'getYearlyRevenue']);
-Route::prefix('/admin/dashboard')->group(function () {
+Route::middleware('auth')->prefix('/admin/dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index-dashboard-user');
@@ -81,3 +81,7 @@ Route::prefix('/admin/dashboard')->group(function () {
         Route::post('/store', [OrderOfflineController::class, 'store'])->name('store-dashboard-order-offline');
     });
 });
+
+\Illuminate\Support\Facades\Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
