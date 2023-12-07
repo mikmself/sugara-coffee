@@ -57,8 +57,9 @@
                                             <div class="form-group">
                                                 <label for="type_payment">Tipe Pembayaran</label>
                                                 <select name="type_payment" id="type_payment" class="form-control">
-                                                    <option value="Cash">Cash</option>
-                                                    <option value="Non Cash">Non Cash</option>
+                                                    @foreach($payments as $payment)
+                                                        <option value="{{$payment->name}}">{{$payment->name}} - {{$payment->number}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -107,109 +108,82 @@
     </section>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const categoryCheckboxes = document.querySelectorAll('.category-filter');
-            const productCards = document.querySelectorAll('[data-category]');
-            const checkboxElements = document.querySelectorAll(".form-check-input");
+            const container = document.getElementById('product-list');
+            const checkboxElements = container.querySelectorAll(".form-check-input");
 
-            checkboxElements.forEach(function (checkboxElement) {
-                checkboxElement.addEventListener("change", updateProducts);
+            container.addEventListener('change', function (event) {
+                const target = event.target;
+                const cardBody = target.closest(".card-body");
+
+                if (target.classList.contains('form-check-input')) {
+                    handleCheckboxChange(cardBody);
+                } else if (target.tagName === 'INPUT' && target.type === 'number') {
+                    handleInputNumberChange(cardBody);
+                }
+
+                updateTotalPrice();
             });
 
-            function updateProducts() {
-                const selectedCategories = Array.from(categoryCheckboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value);
-
-                productCards.forEach(function (card) {
-                    const cardCategory = card.getAttribute('data-category');
-                    const shouldShow = selectedCategories.length === 0 || selectedCategories.includes(cardCategory);
-                    card.style.display = shouldShow ? 'block' : 'none';
-                });
-            }
-
-            const searchInput = document.getElementById('search');
-
-            searchInput.addEventListener('input', function () {
-                const searchTerm = searchInput.value.toLowerCase();
-
-                productCards.forEach(function (card) {
-                    const productName = card.querySelector('.form-check-label').textContent.toLowerCase();
-                    const isVisible = productName.includes(searchTerm);
-                    card.style.display = isVisible ? 'block' : 'none';
-                });
-            });
-
-            const imgElements = document.querySelectorAll(".card-body img");
+            // Add click event listener to img elements
+            const imgElements = container.querySelectorAll(".card-body img");
             imgElements.forEach(function (imgElement) {
                 imgElement.addEventListener("click", function () {
                     const checkboxElement = imgElement.parentElement.querySelector(".form-check-input");
+                    checkboxElement.checked = !checkboxElement.checked; // Toggle checkbox state
                     const cardBody = imgElement.parentElement;
-                    if (checkboxElement.checked) {
-                        checkboxElement.checked = false;
-                        cardBody.classList.remove("active");
-                        const inputNumberElement = cardBody.querySelector("input[type='number']");
-                        inputNumberElement.setAttribute("disabled", "true");
-                    } else {
-                        checkboxElement.checked = true;
-                        cardBody.classList.add("active");
-                        const inputNumberElement = cardBody.querySelector("input[type='number']");
-                        inputNumberElement.removeAttribute("disabled");
-                    }
+                    handleCheckboxChange(cardBody);
                     updateTotalPrice();
                 });
             });
 
-            checkboxElements.forEach(function (checkboxElement) {
-                checkboxElement.addEventListener("change", function () {
-                    const cardBody = checkboxElement.parentElement.parentElement;
-                    if (checkboxElement.checked) {
-                        cardBody.classList.add("active");
-                        const inputNumberElement = cardBody.querySelector("input[type='number']");
-                        if (inputNumberElement) {
-                            inputNumberElement.setAttribute("disabled", "true");
-                        }
-                    } else {
-                        cardBody.classList.remove("active");
-                        const inputNumberElement = cardBody.querySelector("input[type='number']");
-                        if (inputNumberElement) {
-                            inputNumberElement.setAttribute("disabled", "true");
-                        }
-                    }
-                    updateTotalPrice();
-                });
-            });
+            function handleCheckboxChange(cardBody) {
+                const checkboxElement = cardBody.querySelector(".form-check-input");
+                const inputNumberElement = cardBody.querySelector("input[type='number']");
 
-            const updateTotalPrice = () => {
-                const inputNumberElements = document.querySelectorAll(".card-body input");
+                if (checkboxElement.checked) {
+                    cardBody.classList.add("active");
+                    inputNumberElement.removeAttribute("disabled");
+                } else {
+                    cardBody.classList.remove("active");
+                    inputNumberElement.setAttribute("disabled", "true");
+                    inputNumberElement.value = 0;
+                }
+            }
+
+            function handleInputNumberChange(cardBody) {
+                const checkboxElement = cardBody.querySelector(".form-check-input");
+                if (!checkboxElement.checked) {
+                    checkboxElement.checked = true;
+                    cardBody.classList.add("active");
+                }
+            }
+
+            function updateTotalPrice() {
+                const inputNumberElements = container.querySelectorAll("input[type='number']:not([disabled])");
                 let totalPrice = 0;
+
                 inputNumberElements.forEach((inputNumberElement) => {
-                    if (!inputNumberElement.hasAttribute("disabled")) {
-                        const productCard = inputNumberElement.closest(".card-body");
-                        const productPriceText = productCard.querySelector("p").textContent;
-                        const productPriceMatch = productPriceText.match(/(\d+(\.\d{1,2})?)/);
+                    const productCard = inputNumberElement.closest(".card-body");
+                    const productPriceText = productCard.querySelector("p").textContent;
+                    const productPriceMatch = productPriceText.match(/(\d+(\.\d{1,2})?)/);
 
-                        if (productPriceMatch) {
-                            const productPrice = parseFloat(productPriceMatch[0]);
-                            const productQuantity = parseInt(inputNumberElement.value) || 0;
+                    if (productPriceMatch) {
+                        const productPrice = parseFloat(productPriceMatch[0]);
+                        const productQuantity = parseInt(inputNumberElement.value) || 0;
 
-                            if (!isNaN(productPrice) && !isNaN(productQuantity)) {
-                                totalPrice += productPrice * productQuantity;
-                            }
+                        if (!isNaN(productPrice) && !isNaN(productQuantity)) {
+                            totalPrice += productPrice * productQuantity;
                         }
                     }
                 });
+
                 const totalPriceElement = document.getElementById("total-price");
-                if (totalPrice) {
-                    totalPriceElement.textContent = `Total Price: Rp. ${totalPrice.toFixed(2) - (3683802000)}`;
+                if (!isNaN(totalPrice)) {
+                    totalPriceElement.textContent = `Total Price: Rp. ${totalPrice.toFixed(2)}`;
                 } else {
                     totalPriceElement.textContent = "No products in cart";
                 }
-            };
-
-            const inputNumberElements = document.querySelectorAll(".card-body input");
-            inputNumberElements.forEach((inputNumberElement) => {
-                inputNumberElement.addEventListener("input", updateTotalPrice);
-            });
+            }
         });
     </script>
 @endsection
