@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('temp_orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('id_admin')
                 ->nullable()
@@ -23,13 +23,7 @@ return new class extends Migration
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->json('products');
-            $table->bigInteger('total_price');
-            $table->string('type_of_service');
-            $table->string('expedition')->nullable();
-            $table->string('type_payment');
-            $table->string('proof_of_payment')->nullable();
-            $table->string('status');
+            $table->foreignUuid('id_product')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -39,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('temp_orders');
     }
 };

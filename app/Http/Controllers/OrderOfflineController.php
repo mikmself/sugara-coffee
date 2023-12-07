@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\TypeOfPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -16,8 +17,9 @@ class OrderOfflineController extends Controller
         return view('dashboard.order-offline.index',compact('products','orders'));
     }
     public function create(){
+        $payments = TypeOfPayment::all();
         $products = Product::all();
-        return view('dashboard.order-offline.create',compact('products'));
+        return view('dashboard.order-offline.create',compact('products','payments'));
     }
     public function store(Request $request)
     {

@@ -27,5 +27,14 @@ class UserSeeder extends Seeder
             'level' => 'admin',
             'address' => 'Rumahnya Admin'
         ]);
+        User::create([
+            'id' =>  'dbcca61e-75c1-4f11-a84e-6c7e8d86b7f0',
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'level' => 'user',
+            'address' => 'Rumahnya User',
+            'telephone' => '6287837281928'
+        ]);
     }
 }
