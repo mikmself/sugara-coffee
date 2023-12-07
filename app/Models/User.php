@@ -18,6 +18,7 @@ class User extends Authenticatable
         'password',
         'level',
         'address',
+        'telephone',
     ];
     public $incrementing = false;
     protected $hidden = [

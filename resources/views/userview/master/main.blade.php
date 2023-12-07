@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/icon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="/userview/css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
@@ -39,10 +40,110 @@
                 <li class="nav-item @if(request()->routeIs('product')) active @endif"><a class="nav-link me-lg-3" href="{{route('product')}}">Product</a></li>
                 <li class="nav-item @if(request()->routeIs('contact')) active @endif"><a class="nav-link me-lg-3" href="{{route('contact')}}">Contact Us</a></li>
                 <li class="nav-item @if(request()->routeIs('article')) active @endif"><a class="nav-link me-lg-3" href="{{route('article')}}">Article</a></li>
+                @auth
+                    <li class="nav-item @if(request()->routeIs('checkout')) active @endif"><a class="nav-link me-lg-3" href="{{route('checkout')}}">Checkout</a></li>
+                    <li class="nav-item @if(request()->routeIs('order')) active @endif"><a class="nav-link me-lg-3" href="{{route('order')}}">Order</a></li>
+                @endauth
             </ul>
         </div>
     </div>
 </nav>
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+@if ($errors->any())
+    <div class="modal" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery, Popper.js, and Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#errorModal').modal('show');
+            // Automatically close the modal after 1 second
+            setTimeout(function(){
+                $('#errorModal').modal('hide');
+            }, 1000);
+        });
+    </script>
+@endif
+
+@if (session('success'))
+    <div class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ session('success') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#successModal').modal('show');
+            // Automatically close the modal after 1 second
+            setTimeout(function(){
+                $('#successModal').modal('hide');
+            }, 1000);
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <div class="modal" id="customErrorModal" tabindex="-1" role="dialog" aria-labelledby="customErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="customErrorModalLabel">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ session('error') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#customErrorModal').modal('show');
+            // Automatically close the modal after 1 second
+            setTimeout(function(){
+                $('#customErrorModal').modal('hide');
+            }, 1000);
+        });
+    </script>
+@endif
+
 @yield('content')
 <footer class="text-center text-lg-start text-dark" style="background-color: #B7B5A2;">
     <div class="container p-5">

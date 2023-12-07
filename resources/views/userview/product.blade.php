@@ -26,18 +26,23 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5>{{$coffee->name}}</h5>
-                                    <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
+                                    <?php
+                                        $harga = $coffee->price;
+                                        $harga_formatted = number_format($harga, 0, ',', '.');
+                                        echo '<p style="color: #A24B31;
+                                        font-family: Open Sans;
+                                        font-size: 22.719px;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        line-height: 32.817px; /* 144.444% */
+                                        letter-spacing: 0.631px;">Rp. ' . $harga_formatted . '</p>';
+                                        ?>
                                     <p class="mb-4 mb-md-0">
                                         {{$coffee->description}}
                                     </p>
                                 </div>
                             </div>
+                            <a href="{{route('to-checkout',$coffee->id)}}" class="btn btn-dark mt-2">Chekout</a>
                         </div>
                     </div>
                 </div>
@@ -64,19 +69,24 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9">
-                                        <h5>{{$coffee->name}}</h5>
-                                        <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
+                                        <h5>{{$food->name}}</h5>
+                                        <?php
+                                        $harga = $food->price;
+                                        $harga_formatted = number_format($harga, 0, ',', '.');
+                                        echo '<p style="color: #A24B31;
+                                        font-family: Open Sans;
+                                        font-size: 22.719px;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        line-height: 32.817px; /* 144.444% */
+                                        letter-spacing: 0.631px;">Rp. ' . $harga_formatted . '</p>';
+                                        ?>
                                         <p class="mb-4 mb-md-0">
-                                            {{$coffee->description}}
+                                            {{$food->description}}
                                         </p>
                                     </div>
                                 </div>
+                                <a href="{{route('to-checkout',$food->id)}}" class="btn btn-dark mt-2">Chekout</a>
                             </div>
                         </div>
                     </div>
@@ -103,19 +113,24 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9">
-                                        <h5>{{$coffee->name}}</h5>
-                                        <p style="color: #A24B31;
-                                    font-family: Open Sans;
-                                    font-size: 22.719px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    line-height: 32.817px; /* 144.444% */
-                                    letter-spacing: 0.631px;">{{$coffee->price}}</p>
+                                        <h5>{{$drink->name}}</h5>
+                                        <?php
+                                        $harga = $drink->price;
+                                        $harga_formatted = number_format($harga, 0, ',', '.');
+                                        echo '<p style="color: #A24B31;
+                                        font-family: Open Sans;
+                                        font-size: 22.719px;
+                                        font-style: normal;
+                                        font-weight: 700;
+                                        line-height: 32.817px; /* 144.444% */
+                                        letter-spacing: 0.631px;">Rp. ' . $harga_formatted . '</p>';
+                                        ?>
                                         <p class="mb-4 mb-md-0">
-                                            {{$coffee->description}}
+                                            {{$drink->description}}
                                         </p>
                                     </div>
                                 </div>
+                                <a href="{{route('to-checkout',$drink->id)}}" class="btn btn-dark mt-2">Chekout</a>
                             </div>
                         </div>
                     </div>
