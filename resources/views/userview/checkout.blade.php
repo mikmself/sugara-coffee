@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="type_of_service">Tipe Pelayanan</label>
                     <select name="type_of_service" id="type_of_service" class="form-control">
-                        <option value="Ambil Ditempat">Ambil Ditempat</option>
+                        <option value="Dine In">Ambil Ditempat</option>
                         <option value="Antar Dekat">Antar Dekat (+10000)</option>
                         <option value="Antar Jauh">Antar Jauh (+25000)</option>
                     </select>
