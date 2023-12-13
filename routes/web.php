@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderOfflineController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserViewController;
 
@@ -23,11 +24,12 @@ Route::middleware('auth')->group(function (){
     Route::get('/checkout', [UserViewController::class,'checkoutPage'])->name('checkout');
     Route::get('/order', [UserViewController::class,'orderPage'])->name('order');
     Route::post('/checkout', [UserViewController::class,'checkoutAction'])->name('checkout-action');
+    Route::post('/upload-payment/{id}', [OrderController::class, 'uploadPayment'])->name('upload-payment-order');
 });
 
 Route::get('/monthly-revenue', [DashboardController::class, 'getMonthlyRevenue']);
 Route::get('/yearly-revenue', [DashboardController::class, 'getYearlyRevenue']);
-Route::middleware('auth')->prefix('/admin/dashboard')->group(function () {
+Route::middleware(['auth','ceklevel'])->prefix('/admin/dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index-dashboard-user');
@@ -81,6 +83,11 @@ Route::middleware('auth')->prefix('/admin/dashboard')->group(function () {
         Route::get('/', [OrderOfflineController::class, 'index'])->name('index-dashboard-order-offline');
         Route::get('/create', [OrderOfflineController::class, 'create'])->name('create-dashboard-order-offline');
         Route::post('/store', [OrderOfflineController::class, 'store'])->name('store-dashboard-order-offline');
+    });
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index-dashboard-order');
+        Route::get('/acc/{id}', [OrderController::class, 'acc'])->name('acc-dashboard-order');
+        Route::get('/cancel/{id}', [OrderController::class, 'cancel'])->name('cancel-dashboard-order');
     });
 });
 

@@ -43,12 +43,30 @@
                 @auth
                     <li class="nav-item @if(request()->routeIs('checkout')) active @endif"><a class="nav-link me-lg-3" href="{{route('checkout')}}">Checkout</a></li>
                     <li class="nav-item @if(request()->routeIs('order')) active @endif"><a class="nav-link me-lg-3" href="{{route('order')}}">Order</a></li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @else
+                    <a href="/login" class="btn btn-dark">Login/Register</a>
                 @endauth
             </ul>
         </div>
     </div>
 </nav>
-<!-- Include Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 @if ($errors->any())
@@ -72,7 +90,6 @@
         </div>
     </div>
 
-    <!-- Include jQuery, Popper.js, and Bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -80,7 +97,6 @@
     <script>
         $(document).ready(function(){
             $('#errorModal').modal('show');
-            // Automatically close the modal after 1 second
             setTimeout(function(){
                 $('#errorModal').modal('hide');
             }, 1000);
@@ -108,7 +124,6 @@
     <script>
         $(document).ready(function(){
             $('#successModal').modal('show');
-            // Automatically close the modal after 1 second
             setTimeout(function(){
                 $('#successModal').modal('hide');
             }, 1000);
@@ -136,7 +151,6 @@
     <script>
         $(document).ready(function(){
             $('#customErrorModal').modal('show');
-            // Automatically close the modal after 1 second
             setTimeout(function(){
                 $('#customErrorModal').modal('hide');
             }, 1000);
