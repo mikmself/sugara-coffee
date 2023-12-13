@@ -23,7 +23,11 @@
                                 <tbody>
                                 @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{$order->admin->name}}</td>
+                                        @if(isset($orders->admin))
+                                            <td>{{$order->admin->name}}</td>
+                                        @else
+                                            <td>Belum ada admin</td>
+                                        @endif
                                         <td>
                                             @php($dataProduct = json_decode($order->products, true))
                                             @foreach($products as $product)

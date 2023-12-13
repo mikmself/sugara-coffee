@@ -115,12 +115,12 @@ class UserViewController extends Controller
                 'id_user' => Auth::user()->getAuthIdentifier(),
                 'products' => json_encode($productsData),
                 'total_price' => $totalPrice,
-                'type_of_service' => 'Dine In',
+                'type_of_service' => $request->input('type_of_service'),
                 'type_payment' => $request->input('type_payment'),
-                'status' => 'Lunas'
+                'status' => 'unpaid'
             ]);
             TempOrder::where('id_user', Auth::user()->id)->delete();
-            return redirect(route('product'))->with('success','Order berhasil diselesaikan');
+            return redirect('/product')->with('success','Order berhasil diselesaikan');
         }catch (\Exception $exception){
             return back()->with('error',$exception->getMessage());
         }

@@ -145,9 +145,9 @@
                                 <span>Product Category</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="" class='sidebar-link'>
-                                <i class="bi bi-bag-fill"></i>
+                        <li class="sidebar-item @if(request()->routeIs('index-dashboard-order')) active @endif">
+                            <a href="{{ route('index-dashboard-order') }}" class='sidebar-link'>
+                                <i class="bi bi-cart-fill"></i>
                                 <span>Order</span>
                             </a>
                         </li>
