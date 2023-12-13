@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index(){
-        $products = Product::all();
+        $products = Product::where('type_of_service', '<>', 'Dine In')->get();
         $orders = Order::all();
         return view('dashboard.order.index',compact('products','orders'));
     }
