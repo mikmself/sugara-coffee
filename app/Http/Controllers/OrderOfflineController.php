@@ -13,7 +13,7 @@ class OrderOfflineController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $orders = Order::where('type_of_service','Dine In')->get();
+        $orders = Order::where('type_of_service','Dine In')->latest()->get();
         return view('dashboard.order-offline.index',compact('products','orders'));
     }
     public function create(){
