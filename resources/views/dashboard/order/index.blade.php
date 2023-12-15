@@ -26,7 +26,7 @@
                                 <tbody>
                                 @foreach ($orders as $order)
                                     <tr>
-                                        @if(isset($orders->admin))
+                                        @if(isset($order->admin))
                                             <td>{{$order->admin->name}}</td>
                                         @else
                                             <td>Belum ada admin</td>
