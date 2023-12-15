@@ -23,22 +23,19 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input category-filter" id="filter-kopi"
-                                                   value="Produk Kopi">
+                                            <input type="checkbox" class="form-check-input category-filter" id="filter-kopi" value="Produk Kopi">
                                             <label class="form-check-label" for="filter-kopi">Produk Kopi</label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input category-filter" id="filter-makanan"
-                                                   value="Makanan">
+                                            <input type="checkbox" class="form-check-input category-filter" id="filter-makanan" value="Makanan">
                                             <label class="form-check-label" for="filter-makanan">Makanan</label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input category-filter" id="filter-minuman"
-                                                   value="Minuman">
+                                            <input type="checkbox" class="form-check-input category-filter" id="filter-minuman" value="Minuman">
                                             <label class="form-check-label" for="filter-minuman">Minuman</label>
                                         </div>
                                     </div>
@@ -48,8 +45,7 @@
                                 <label for="search">Search by Product Name:</label>
                                 <input type="text" class="form-control" id="search" placeholder="Enter product name">
                             </div>
-                            <form class="form form-vertical" method="POST"
-                                  action="{{route('store-dashboard-order-offline')}}" enctype="multipart/form-data">
+                            <form class="form form-vertical" method="POST" action="{{route('store-dashboard-order-offline')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-body">
                                     <div class="row">
@@ -67,25 +63,18 @@
                                             <div class="row" id="product-list">
                                                 @foreach($products as $index => $product)
                                                     <div class="col-md-3" data-category="{{ $product->category->name }}">
-                                                        <div class="card mb-3">
+                                                    <div class="card mb-3">
                                                             <div class="card-body" id="elemennya">
                                                                 <div class="form-check">
-                                                                    <input type="checkbox" class="form-check-input"
-                                                                           id="product-{{ $product->id }}"
-                                                                           name="products[{{ $index }}][status]">
-                                                                    <label class="form-check-label"
-                                                                           for="product-{{ $product->id }}">{{ $product->name
+                                                                    <input type="checkbox" class="form-check-input" id="product-{{ $product->id }}" name="products[{{ $index }}][status]">
+                                                                    <label class="form-check-label" for="product-{{ $product->id }}">{{ $product->name
                                                                 }}</label>
                                                                 </div>
-                                                                <img src="/product_images/{{ $product->image }}"
-                                                                     alt="{{ $product->name }}" class="img-fluid">
+                                                                <img src="/product_images/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
                                                                 <p>Harga: {{ $product->price }}</p>
                                                                 <div class="mb-3">
-                                                                    <input type="number" class="form-control"
-                                                                           name="products[{{ $index }}][total]" min="0" value="0"
-                                                                           disabled>
-                                                                    <input type="hidden" name="products[{{ $index }}][id]"
-                                                                           value="{{ $product->id }}">
+                                                                    <input type="number" class="form-control" name="products[{{ $index }}][total]" min="0" value="0" disabled>
+                                                                    <input type="hidden" name="products[{{ $index }}][id]" value="{{ $product->id }}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -110,6 +99,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const container = document.getElementById('product-list');
             const checkboxElements = container.querySelectorAll(".form-check-input");
+            const searchInput = document.getElementById('search');
 
             container.addEventListener('change', function (event) {
                 const target = event.target;
@@ -117,6 +107,7 @@
 
                 if (target.classList.contains('form-check-input')) {
                     handleCheckboxChange(cardBody);
+                    handleCategoryFilter();
                 } else if (target.tagName === 'INPUT' && target.type === 'number') {
                     handleInputNumberChange(cardBody);
                 }
@@ -124,7 +115,10 @@
                 updateTotalPrice();
             });
 
-            // Add click event listener to img elements
+            searchInput.addEventListener('input', function () {
+                handleSearch();
+            });
+
             const imgElements = container.querySelectorAll(".card-body img");
             imgElements.forEach(function (imgElement) {
                 imgElement.addEventListener("click", function () {
@@ -132,6 +126,7 @@
                     checkboxElement.checked = !checkboxElement.checked; // Toggle checkbox state
                     const cardBody = imgElement.parentElement;
                     handleCheckboxChange(cardBody);
+                    handleCategoryFilter();
                     updateTotalPrice();
                 });
             });
@@ -161,7 +156,6 @@
             function updateTotalPrice() {
                 const inputNumberElements = container.querySelectorAll("input[type='number']:not([disabled])");
                 let totalPrice = 0;
-
                 inputNumberElements.forEach((inputNumberElement) => {
                     const productCard = inputNumberElement.closest(".card-body");
                     const productPriceText = productCard.querySelector("p").textContent;
@@ -183,6 +177,26 @@
                 } else {
                     totalPriceElement.textContent = "No products in cart";
                 }
+            }
+
+            function handleSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const productCards = container.querySelectorAll(".card-body");
+                productCards.forEach((productCard) => {
+                    const productName = productCard.querySelector(".form-check-label").textContent.toLowerCase();
+                    const isVisible = productName.includes(searchTerm);
+                    productCard.style.display = isVisible ? "unset" : "none";
+                });
+            }
+            function handleCategoryFilter() {
+                const checkedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(checkbox => checkbox.value);
+                console.log(checkedCategories);
+                const productCards = container.querySelectorAll(".col-md-3");
+                productCards.forEach((productCard) => {
+                    const productCategory = productCard.getAttribute('data-category');
+                    const isVisible = checkedCategories.length === 0 || checkedCategories.includes(productCategory);
+                    productCard.style.display = isVisible ? "block" : "none";
+                });
             }
         });
     </script>

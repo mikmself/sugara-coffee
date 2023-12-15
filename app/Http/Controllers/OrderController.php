@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $orders = Order::where('type_of_service', '<>', 'Dine In')->get();
+        $orders = Order::where('type_of_service', '<>', 'Dine In')->latest()->get();
         return view('dashboard.order.index',compact('products','orders'));
     }
     public function uploadPayment(Request $request, $id)
@@ -30,13 +31,19 @@ class OrderController extends Controller
     public function acc($id)
     {
         $order = Order::findOrFail($id);
-        $order->update(['status' => 'paid']);
+        $order->update([
+            'id_admin' => Auth::user()->id,
+            'status' => 'paid'
+        ]);
         return redirect()->back()->with('success', 'Order marked as paid successfully!');
     }
     public function cancel($id)
     {
         $order = Order::findOrFail($id);
-        $order->update(['status' => 'cancelled']);
+        $order->update([
+            'id_admin' => Auth::user()->id,
+            'status' => 'cancelled'
+        ]);
 
         return redirect()->back()->with('success', 'Order cancelled successfully!');
     }

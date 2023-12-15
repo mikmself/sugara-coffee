@@ -128,7 +128,7 @@ class UserViewController extends Controller
 
     public function orderPage(){
         $products = Product::get();
-        $orders = Order::where('id_user',Auth::user()->id)->get();
+        $orders = Order::where('id_user', Auth::user()->id)->latest()->get();
         return view('userview.order',compact('orders','products'));
     }
 }
