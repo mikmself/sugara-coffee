@@ -16,4 +16,7 @@ class Order extends Model implements HasMedia
     public function admin(){
         return $this->belongsTo(User::class,'id_admin');
     }
+    public function user(){
+        return $this->belongsTo(User::class,'id_user');
+    }
 }

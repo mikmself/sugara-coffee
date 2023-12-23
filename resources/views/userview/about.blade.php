@@ -59,7 +59,7 @@
             <div
                 class="row gx-5 align-items-center justify-content-center justify-content-lg-between flex-row-reverse mt-5">
                 <div class="col-12 col-lg-5 order-lg-1 order-2">
-                    <h2 class="display-4 lh-1 mb-4">Kedai Kampung Sugara</h2>
+                    <h2 class="display-4 lh-1 mb-4">Kedai Kampoeng Kopi Sugara</h2>
                     <p class="lead fw-normal text-muted mb-5 mb-lg-0">Sugara Coffee hadir diberbagai event daerah, didukung oleh
                         Bupati dan anggota DPRD wilayah Cilacap</p>
                 </div>
@@ -81,7 +81,7 @@
                             <div class="col-md-5 text-center text-white order-md-2" style="display: flex; align-items: center; justify-content: center;flex-direction: column;">
                                 <h5 class="card-title">#QUOTESOUTTHEDAY</h5>
                                 <p class="card-text">"Kopi Adalah Bahasa Universal, Dengan Secangkir Kopi, Anda Dapat Berbicara Dengan Siapa Saja Di Seluruh Dunia."</p>
-                                <p class="card-text"> Bpk Siapa Aja Boleh</p>
+                                <p class="card-text"> Despa Damar Sugara</p>
                             </div>
                         </div>
                     </div>

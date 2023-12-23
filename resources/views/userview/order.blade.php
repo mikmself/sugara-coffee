@@ -37,7 +37,13 @@
                                         <td class="order-date">{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                                         <td>
                                             @if($order->status == "unpaid")
-                                                <button class="btn btn-warning" data-toggle="modal" data-target="#uploadModal-{{ $order->id }}">Bayar</button>
+                                                @if($order->type_of_service !== "Ambil Ditempat")
+                                                    @if($order->type_of_service !== "Antar")
+                                                        <button class="btn btn-warning" data-toggle="modal" data-target="#uploadModal-{{ $order->id }}">Bayar</button>
+                                                    @else
+                                                        Menunggu Konfirmasi
+                                                    @endif
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>

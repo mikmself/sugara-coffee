@@ -47,4 +47,20 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Order cancelled successfully!');
     }
+    public function antarJauh($id){
+        $order = Order::findOrFail($id);
+        $order->update([
+            'type_of_service' => 'Antar Jauh',
+            'total_price' => $order->total_price += 25000
+        ]);
+        return redirect()->back()->with('success', 'Order change type of service to Antar Jauh successfully!');
+    }
+    public function antarDekat($id){
+        $order = Order::findOrFail($id);
+        $order->update([
+            'type_of_service' => 'Antar Dekat',
+            'total_price' => $order->total_price += 10000
+        ]);
+        return redirect()->back()->with('success', 'Order change type of service to Antar Dekat successfully!');
+    }
 }
