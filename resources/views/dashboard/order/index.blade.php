@@ -67,7 +67,7 @@
                                             @else
                                                 @if($order->type_of_service == "Antar")
                                                     <a href="{{route('antardekat-dashboard-order',$order->id)}}" class="btn btn-info" style="width: 4cm">Antar Dekat</a>
-                                                    <a href="{{route('antarjauhgit-dashboard-order',$order->id)}}" class="btn btn-secondary" style="width: 4cm;margin-top: .2cm">Antar Jauh</a>
+                                                    <a href="{{route('antarjauh-dashboard-order',$order->id)}}" class="btn btn-secondary" style="width: 4cm;margin-top: .2cm">Antar Jauh</a>
                                                 @endif
                                                 @if($order->status === "waiting")
                                                     <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
