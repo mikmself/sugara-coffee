@@ -7,6 +7,11 @@
             height: auto;
             margin-bottom: 10px;
         }
+        @media only screen and (max-width: 556px) {
+            .text-dokumentasi {
+                font-size: 60px !important;
+            }
+        }
     </style>
 
     <header class="masthead">
@@ -15,7 +20,7 @@
                 <div class="col-lg-6 order-2 order-lg-1">
                     <p class="text-dark mobile-text" style="color: #332B23; margin-top: 3cm;">Kumpulan Aktivitas/Event dari tim kami</p>
                     <div class="mb-5 mb-lg-0 text-left text-lg-start text-dark">
-                        <h1 class="display-1 lh-1 mb-3 mobile-text2">DOKUMENTASI GALERY</h1>
+                        <h1 class="display-1 lh-1 mb-3 mobile-text2 text-dokumentasi" style="font-size: 80px;">DOKUMENTASI GALERY</h1>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2">
@@ -44,7 +49,7 @@
         <div class="container px-5">
             <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between flex-row-reverse mt-5">
                 <div class="col-12 col-lg-5 order-lg-1 order-2">
-                    <h2 class="display-4 lh-1 mb-4">Kedai Kampung Sugara</h2>
+                    <h2 class="display-4 lh-1 mb-4">Kedai Kampoeng Kopi Sugara</h2>
                     <p class="lead fw-normal text-muted mb-5 mb-lg-0">Sugara Coffee hadir diberbagai event daerah, didukung oleh Bupati dan anggota DPRD wilayah Cilacap</p>
                 </div>
                 <div class="col-sm-8 col-md-6 order-lg-2 order-1 text-center">

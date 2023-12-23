@@ -33,6 +33,9 @@ class User extends Authenticatable
     public function order(){
         return $this->hasMany(Order::class,'id_admin');
     }
+    public function orderUser(){
+        return $this->hasMany(Order::class,'id_user');
+    }
     public function post(){
         return $this->hasMany(Post::class,'id_creator');
     }

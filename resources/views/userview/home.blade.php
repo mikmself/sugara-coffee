@@ -87,7 +87,7 @@
                                     <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Kopi Bubuk</h5>
                                     <p class="card-text" style="color: #B3B3B3;">Produk-produk kopi lokal dengan berbagai
                                         varian, wongkene, robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                                    <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                                    <p class="card-text" style="color: #B3B3B3;">Kedai Kampoeng Kopi Sugara</p>
                                 </div>
                             </div>
                             <div class="card mx-auto" style="width: 18rem; height: 13cm;">
@@ -96,7 +96,7 @@
                                     <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Green Bean</h5>
                                     <p class="card-text" style="color: #B3B3B3;">Produk-produk kopi lokal dengan berbagai
                                         varian, wongkene, robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                                    <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                                    <p class="card-text" style="color: #B3B3B3;">Kedai Kampoeng Kopi Sugara</p>
                                 </div>
                             </div>
                             <div class="card mx-auto" style="width: 18rem; height: 13cm;">
@@ -105,7 +105,7 @@
                                     <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Roast Bean</h5>
                                     <p class="card-text" style="color: #B3B3B3;">Roast Bean robusta pilihan khas
                                         Karanggintung, arabika gayo, arabika kintamani bali dll.</p>
-                                    <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                                    <p class="card-text" style="color: #B3B3B3;">Kedai Kampoeng Kopi Sugara</p>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                                     <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Jasa Huller</h5>
                                     <p class="card-text" style="color: #B3B3B3;">Kami menyediakan jasa Huller biji kopi
                                     </p>
-                                    <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                                    <p class="card-text" style="color: #B3B3B3;">Kedai Kampoeng Kopi Sugara</p>
                                 </div>
                             </div>
                             <div class="card mx-auto" style="width: 18rem; height: 13cm;">
@@ -127,7 +127,7 @@
                                     <h5 class="card-title" style="color: #3F2A20; font-size: 33px;">Roastery</h5>
                                     <p class="card-text" style="color: #B3B3B3;">Kami menyediakanjasa roasting biji kopi
                                     </p>
-                                    <p class="card-text" style="color: #B3B3B3;">Kampung Sugara Coffee</p>
+                                    <p class="card-text" style="color: #B3B3B3;">Kedai Kampoeng Kopi Sugara</p>
                                 </div>
                             </div>
                             <div style="width: 18rem; height: 13cm;">

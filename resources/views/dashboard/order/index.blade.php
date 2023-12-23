@@ -14,6 +14,8 @@
                                 <thead>
                                 <tr>
                                     <th>ADMIN</th>
+                                    <th>USER</th>
+                                    <th>ALAMAT</th>
                                     <th>PRODUCTS</th>
                                     <th>TOTAL HARGA</th>
                                     <th>TIPE PEMBAYARAN</th>
@@ -31,6 +33,8 @@
                                         @else
                                             <td>Belum ada admin</td>
                                         @endif
+                                        <td>{{$order->user->name}}</td>
+                                        <td>{{$order->user->address}}</td>
                                         <td>
                                             @php($dataProduct = json_decode($order->products, true))
                                             @foreach($products as $product)
@@ -46,14 +50,29 @@
                                         <td>{{$order->status}}</td>
                                         <td class="order-date">{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#imageModal-{{ $order->id }}">
-                                                <img id="imagePreview-{{ $order->id }}" src="{{ $order->getFirstMediaUrl('image') }}" alt="Preview" style="max-width: 100%; max-height: 100px;">
-                                            </a>
+                                            @if($order->type_of_service == "Ambil Ditempat")
+                                                <p class="text-danger">Bayar ketika diambil</p>
+                                            @else
+                                                <a href="#" data-toggle="modal" data-target="#imageModal-{{ $order->id }}">
+                                                    <img id="imagePreview-{{ $order->id }}" src="{{ $order->getFirstMediaUrl('image') }}" alt="Preview" style="max-width: 100%; max-height: 100px;">
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
-                                            @if($order->status === "waiting")
-                                                <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
-                                                <a href="{{ route('cancel-dashboard-order',$order->id) }}" class="btn btn-danger">CANCEL</a>
+                                            @if($order->type_of_service == "Ambil Ditempat")
+                                                @if($order->status == "unpaid")
+                                                    <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
+                                                    <a href="{{ route('cancel-dashboard-order',$order->id) }}" class="btn btn-danger">CANCEL</a>
+                                                @endif
+                                            @else
+                                                @if($order->type_of_service == "Antar")
+                                                    <a href="{{route('antardekat-dashboard-order',$order->id)}}" class="btn btn-info" style="width: 4cm">Antar Dekat</a>
+                                                    <a href="{{route('antarjauhgit-dashboard-order',$order->id)}}" class="btn btn-secondary" style="width: 4cm;margin-top: .2cm">Antar Jauh</a>
+                                                @endif
+                                                @if($order->status === "waiting")
+                                                    <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
+                                                    <a href="{{ route('cancel-dashboard-order',$order->id) }}" class="btn btn-danger">CANCEL</a>
+                                                @endif
                                             @endif
                                         </td>
                                     </tr>

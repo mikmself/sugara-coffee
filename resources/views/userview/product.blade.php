@@ -155,7 +155,7 @@
                     <div class="card-body">
                         <h5 class="card-title product-title">Gadog Premium</h5>
                         <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                        <p class="card-text product-description">Kampung Sugara Coffee</p>
+                        <p class="card-text product-description">Kedai Kampoeng Kopi Sugara</p>
                     </div>
                 </div>
                 <div class="card col-md-12 col-lg-3" style="margin-top: 1cm">
@@ -163,7 +163,7 @@
                     <div class="card-body">
                         <h5 class="card-title product-title">Kopla Premium</h5>
                         <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                        <p class="card-text product-description">Kampung Sugara Coffee</p>
+                        <p class="card-text product-description">Kedai Kampoeng Kopi Sugara</p>
                     </div>
                 </div>
                 <div class="card col-md-12 col-lg-3" style="margin-top: 1cm">
@@ -171,7 +171,7 @@
                     <div class="card-body">
                         <h5 class="card-title product-title">Robusta</h5>
                         <p class="card-text product-description">robusta gadog hingga premium Sugara Coffee. Kopi </p>
-                        <p class="card-text product-description">Kampung Sugara Coffee</p>
+                        <p class="card-text product-description">Kedai Kampoeng Kopi Sugara</p>
                     </div>
                 </div>
             </div>
