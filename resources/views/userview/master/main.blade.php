@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Website Kedai Kampoeng Kopi Sugara" />
+    <meta name="author" content="Kampoeng Kedai Kopi Sugara Team" />
+    <meta name="title" content="Kampoeng Kedai Kopi Sugara" />
     <title>Kedai Kampoeng Kopi Sugara | @yield('title')</title>
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/icon.png" type="image/png">
