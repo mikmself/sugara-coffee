@@ -7,7 +7,7 @@
     <meta name="description" content="Website Kedai Kampoeng Kopi Sugara" />
     <meta name="author" content="Kampoeng Kedai Kopi Sugara Team" />
     <meta name="title" content="Kampoeng Kedai Kopi Sugara" />
-    <title>Kedai Kampoeng Kopi Sugara | @yield('title')</title>
+    <title>Kampoeng Kopi Sugara | @yield('title')</title>
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="/icon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
