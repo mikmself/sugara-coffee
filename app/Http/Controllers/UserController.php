@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -106,5 +107,16 @@ class UserController extends Controller
         }
         $user->delete();
         return redirect(route('index-dashboard-user'))->with('success', 'Pengguna berhasil dihapus.');
+    }
+
+    public function verifyUser($id){
+        $user = User::find($id);
+        if (!$user) {
+            return back()->with('error','Data pengguna tidak ditemukan');
+        }
+
+        $user->email_verified_at = Carbon::now();
+        $user->save();
+        return back()->with('success','Pengguna berhasil diferifikasi');
     }
 }

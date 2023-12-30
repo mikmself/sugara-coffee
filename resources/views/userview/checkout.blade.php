@@ -46,6 +46,7 @@
                     <select name="type_of_service" id="type_of_service" class="form-control">
                         <option value="Ambil Ditempat">Ambil Ditempat</option>
                         <option value="Antar">Antar</option>
+                        <option value="Kirim">Kirim</option>
                     </select>
                 </div>
                 @foreach($orders as $index => $product)

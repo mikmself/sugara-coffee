@@ -18,6 +18,7 @@
                                     <th>ADDRESS</th>
                                     <th>LEVEL</th>
                                     <th>ACTION</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +39,11 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
+                                    </td>
+                                    <td>
+                                        @if($user->email_verified_at == null)
+                                            <a href="{{route('verify-dashboard-user',$user->id)}}" class="btn btn-success">verify</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

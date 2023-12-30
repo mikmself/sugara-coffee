@@ -39,7 +39,11 @@
                                             @if($order->status == "unpaid")
                                                 @if($order->type_of_service !== "Ambil Ditempat")
                                                     @if($order->type_of_service !== "Antar")
-                                                        <button class="btn btn-warning" data-toggle="modal" data-target="#uploadModal-{{ $order->id }}">Bayar</button>
+                                                        @if($order->type_payment == "Cash")
+                                                            Bayar Melalui Sistem COD
+                                                        @else
+                                                            <button class="btn btn-warning" data-toggle="modal" data-target="#uploadModal-{{ $order->id }}">Bayar</button>
+                                                        @endif
                                                     @else
                                                         Menunggu Konfirmasi
                                                     @endif

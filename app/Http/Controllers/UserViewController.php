@@ -103,6 +103,9 @@ class UserViewController extends Controller
                 array_push($productsData,$store_product);
             }
         }
+        if($request->input('type_of_service') == "Kirim"){
+            $totalPrice += 25000;
+        }
         try {
             Order::create([
                 'id' => Str::uuid(),

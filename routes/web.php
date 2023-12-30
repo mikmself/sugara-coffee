@@ -19,7 +19,7 @@ Route::get('/product',[UserViewController::class,'product'])->name('product');
 Route::get('/contact',[UserViewController::class,'contact'])->name('contact');
 Route::get('/article',[UserViewController::class,'article'])->name('article');
 Route::get('/article/{slug}',[UserViewController::class,'detailArticle'])->name('detail-article');
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth','verifieduser'])->group(function (){
     Route::get('to-checkout/{id}',[UserViewController::class,'toCheckout'])->name('to-checkout');
     Route::get('/checkout', [UserViewController::class,'checkoutPage'])->name('checkout');
     Route::get('/order', [UserViewController::class,'orderPage'])->name('order');
@@ -38,6 +38,7 @@ Route::middleware(['auth','ceklevel'])->prefix('/admin/dashboard')->group(functi
         Route::put('/edit/{id}', [UserController::class, 'edit'])->name('edit-dashboard-user');
         Route::patch('/update/{id}', [UserController::class, 'update'])->name('update-dashboard-user');
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('delete-dashboard-user');
+        Route::get('/verify/{id}', [UserController::class, 'verifyUser'])->name('verify-dashboard-user');
     });
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index-dashboard-product');
