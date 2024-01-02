@@ -91,6 +91,7 @@ Route::middleware(['auth','ceklevel'])->prefix('/admin/dashboard')->group(functi
         Route::get('/cancel/{id}', [OrderController::class, 'cancel'])->name('cancel-dashboard-order');
         Route::get('/antardekat/{id}', [OrderController::class, 'antarDekat'])->name('antardekat-dashboard-order');
         Route::get('/antarjauh/{id}', [OrderController::class, 'antarJauh'])->name('antarjauh-dashboard-order');
+        Route::get('/paid/{id}', [OrderController::class, 'paid'])->name('paid-dashboard-order');
     });
 });
 

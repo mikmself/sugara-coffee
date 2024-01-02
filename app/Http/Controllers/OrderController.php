@@ -63,4 +63,11 @@ class OrderController extends Controller
         ]);
         return redirect()->back()->with('success', 'Order change type of service to Antar Dekat successfully!');
     }
+
+    public function paid($id){
+        $order = Order::where('id',$id)->update([
+            'status' => 'paid'
+        ]);
+        return redirect()->back()->with('success', 'Order paid confirmation change successfully!');
+    }
 }

@@ -50,8 +50,14 @@
                                         <td>{{$order->status}}</td>
                                         <td class="order-date">{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
                                         <td>
-                                            @if($order->type_of_service == "Ambil Ditempat")
-                                                <p class="text-danger">Bayar ketika diambil</p>
+                                            @if($order->type_payment == "Cash")
+                                                @if($order->status == "paid")
+                                                    <p class="text-success">Lunas dibayar</p>
+                                                @elseif($order->status == "cancelled")
+                                                    <p class="text-danger">Pemesanan dicancel!</p>
+                                                @else
+                                                    <p class="text-warning">Bayar ketika diambil</p>
+                                                @endif
                                             @else
                                                 <a href="#" data-toggle="modal" data-target="#imageModal-{{ $order->id }}">
                                                     <img id="imagePreview-{{ $order->id }}" src="{{ $order->getFirstMediaUrl('image') }}" alt="Preview" style="max-width: 100%; max-height: 100px;">
@@ -73,6 +79,9 @@
                                                     <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
                                                     <a href="{{ route('cancel-dashboard-order',$order->id) }}" class="btn btn-danger">CANCEL</a>
                                                 @endif
+                                            @endif
+                                            @if($order->type_payment == "Cash" && $order->status == "unpaid")
+                                                    <a href="{{route('paid-dashboard-order',$order->id)}}" class="btn btn-success">Lunas</a>
                                             @endif
                                         </td>
                                     </tr>

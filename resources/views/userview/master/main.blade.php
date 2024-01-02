@@ -162,6 +162,8 @@
 @yield('content')
 <footer class="text-center text-lg-start text-dark" style="background-color: #B7B5A2;">
     <div class="container p-5">
+        <a href="https://wa.me/62882003984119" class="btn btn-dark" style="background: #39ca3d;border-color: #39ca3d" target="_blank"><img src="/icon/whatsapp.png" alt="" style="width: .7cm"> Whatsapp</a>
+        <a href="https://shp.ee/9rhn1td" class="btn btn-dark" style="background:#e53700;border-color:#e53700" target="_blank"><img src="/icon/shopee.png" alt="" style="width: .7cm"> Shopee</a>
         <div class="row py-5">
             <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase"><img src="/userview/assets/img/logo.png" alt="" srcset=""></h5>
