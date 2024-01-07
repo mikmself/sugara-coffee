@@ -73,9 +73,9 @@
                             </p>
                         </div>
                         <div class="col-md-2 top-0 end-0 d-flex flex-column" style="align-items: flex-end;">
-                            <button type="button" class="btn btn-danger">
+                            <a href="{{route('delete-temp-order',$product->id)}}" type="button" class="btn btn-danger">
                                 <i class="bi bi-trash-fill"></i>
-                            </button>
+                            </a>
                             <div class="input-group mt-auto" style="justify-content: flex-end;">
                                 <button class="btn btn-outline-dark decrement" type="button" id="button-addon1">-</button>
                                 <span class="input-group-text quantity" id="basic-addon1">1</span>

@@ -23,6 +23,7 @@ Route::middleware(['auth','verifieduser'])->group(function (){
     Route::get('to-checkout/{id}',[UserViewController::class,'toCheckout'])->name('to-checkout');
     Route::get('/checkout', [UserViewController::class,'checkoutPage'])->name('checkout');
     Route::get('/order', [UserViewController::class,'orderPage'])->name('order');
+    Route::get('/delete-temp-order/{id}', [UserViewController::class,'deleteTempOrder'])->name('delete-temp-order');
     Route::post('/checkout', [UserViewController::class,'checkoutAction'])->name('checkout-action');
     Route::post('/upload-payment/{id}', [OrderController::class, 'uploadPayment'])->name('upload-payment-order');
 });

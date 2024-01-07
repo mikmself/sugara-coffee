@@ -74,15 +74,17 @@
                                                 @if($order->type_of_service == "Antar")
                                                     <a href="{{route('antardekat-dashboard-order',$order->id)}}" class="btn btn-info" style="width: 4cm">Antar Dekat</a>
                                                     <a href="{{route('antarjauh-dashboard-order',$order->id)}}" class="btn btn-secondary" style="width: 4cm;margin-top: .2cm">Antar Jauh</a>
+                                                @else
+                                                    @if($order->type_payment == "Cash" && $order->status == "unpaid")
+                                                        <a href="{{route('paid-dashboard-order',$order->id)}}" class="btn btn-success">Lunas</a>
+                                                    @endif
                                                 @endif
                                                 @if($order->status === "waiting")
                                                     <a href="{{ route('acc-dashboard-order',$order->id) }}" class="btn btn-success">ACC</a>
                                                     <a href="{{ route('cancel-dashboard-order',$order->id) }}" class="btn btn-danger">CANCEL</a>
                                                 @endif
                                             @endif
-                                            @if($order->type_payment == "Cash" && $order->status == "unpaid")
-                                                    <a href="{{route('paid-dashboard-order',$order->id)}}" class="btn btn-success">Lunas</a>
-                                            @endif
+
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="imageModal-{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel-{{ $order->id }}" aria-hidden="true">

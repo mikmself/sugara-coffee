@@ -128,4 +128,9 @@ class UserViewController extends Controller
         $orders = Order::where('id_user', Auth::user()->id)->latest()->get();
         return view('userview.order',compact('orders','products'));
     }
+
+    public function deleteTempOrder($id){
+        TempOrder::where('id',$id)->delete();
+        return redirect('/checkout')->with('success','Kerjang berhasil dihapus');
+    }
 }
