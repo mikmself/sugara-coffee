@@ -116,6 +116,13 @@
         </div>
     </div>
     <script>
+        document.getElementById('openChangeAddressModal').addEventListener('click', function() {
+            document.getElementById('changeAddressModal').style.display = 'block';
+        });
+
+        document.getElementById('closeButton').addEventListener('click', function() {
+            document.getElementById('changeAddressModal').style.display = 'none';
+        });
         document.addEventListener('DOMContentLoaded', function () {
             const productContainers = document.querySelectorAll('.card-product');
             const totalHargaElement = document.getElementById('totalHarga');
