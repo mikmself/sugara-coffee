@@ -37,6 +37,7 @@ class OrderController extends Controller
         ]);
         return redirect()->back()->with('success', 'Order marked as paid successfully!');
     }
+
     public function cancel($id)
     {
         $order = Order::findOrFail($id);

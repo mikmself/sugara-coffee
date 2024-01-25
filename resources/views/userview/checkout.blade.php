@@ -25,11 +25,37 @@
                 <h5 class="card-title">Alamat Pengiriman</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{auth()->user()->name}} | {{auth()->user()->telephone}}</h6>
                 <p class="card-text">{{auth()->user()->address}}</p>
+                <button class="btn btn-dark" id="openChangeAddressModal">Change Address</button>
             </div>
         </div>
     </div>
 
+    <div class="modal" id="changeAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Address</h5>
+                    <button type="button" class="close" id="closeButton" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('change-address')}}" >
+                        @csrf
+                        <div class="form-group">
+                            <label for="address">New Address:</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Enter new address">
+                        </div>
+                        <button type="submit" class="btn btn-dark">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
+        <div class="mt-4">
+            <h4>Total Harga: <span id="totalHarga">Rp. 0</span></h4>
+        </div>
         <div class="col-md-12 col-lg-12 mb-3 mt-5">
             <form action="{{route('checkout-action')}}" method="post">
                 @csrf
@@ -45,8 +71,8 @@
                     <label for="type_of_service">Tipe Pelayanan</label>
                     <select name="type_of_service" id="type_of_service" class="form-control">
                         <option value="Ambil Ditempat">Ambil Ditempat</option>
-                        <option value="Antar">Antar</option>
-                        <option value="Kirim">Kirim</option>
+                        <option value="Antar">Antar [+10000-15000]</option>
+                        <option value="Kirim">Kirim [+25000]</option>
                     </select>
                 </div>
                 @foreach($orders as $index => $product)
@@ -89,10 +115,15 @@
             </form>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const productContainers = document.querySelectorAll('.card-product');
+            const totalHargaElement = document.getElementById('totalHarga');
+            let totalHarga = 0;
+
+            function updateTotalHarga() {
+                totalHargaElement.innerText = 'Rp. ' + totalHarga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
 
             productContainers.forEach((container, index) => {
                 const decrementButton = container.querySelector('.input-group .btn-outline-dark.decrement');
@@ -101,21 +132,39 @@
                 const quantityInput = container.querySelector('.input-product .qtt');
                 let quantity = 1;
 
+                const hargaElement = container.querySelector('.harga');
+                const harga = parseInt(hargaElement.innerText.replace('Rp. ', '').replace('.', '').trim());
+                totalHarga += harga * quantity;
+                updateTotalHarga();
+
                 decrementButton.addEventListener('click', () => {
                     if (quantity > 1) {
                         quantity--;
+                        totalHarga -= harga;
                         updateQuantity();
                     }
                 });
 
                 incrementButton.addEventListener('click', () => {
                     quantity++;
+                    totalHarga += harga;
                     updateQuantity();
                 });
 
                 function updateQuantity() {
                     quantityElement.textContent = quantity;
                     quantityInput.value = quantity;
+                    updateTotalHarga();
+                }
+            });
+
+            const typeOfServiceSelect = document.getElementById('type_of_service');
+            const tambahanBiayaKirim = 25000;
+
+            typeOfServiceSelect.addEventListener('change', function () {
+                if (typeOfServiceSelect.value === 'Kirim') {
+                    totalHarga += tambahanBiayaKirim;
+                    updateTotalHarga();
                 }
             });
         });

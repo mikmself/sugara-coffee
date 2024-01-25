@@ -21,7 +21,6 @@ class UserViewController extends Controller
     public function about(){
         return view('userview.about');
     }
-
     public function article(){
         $posts = Post::where('id', '<>', '2b86c667-ea4e-47e0-ac35-8a7c8d8c6303')->get();
         $main = Post::where('id','2b86c667-ea4e-47e0-ac35-8a7c8d8c6303')->first();
@@ -40,17 +39,13 @@ class UserViewController extends Controller
         }, $title);
         return $title;
     }
-
-
     public function contact(){
         return view('userview.contact');
     }
-
     public function event(){
         $events = Event::orderBy('created_at', 'asc')->get();
         return view('userview.event',compact('events'));
     }
-
     public function product(){
         $coffees  = Product::join('product_categories', 'products.id_category', '=', 'product_categories.id')
             ->where('product_categories.name', 'Produk Kopi')
@@ -66,7 +61,6 @@ class UserViewController extends Controller
             ->get();
         return view('userview.product',compact('coffees','drinks','foods'));
     }
-
     public function toCheckout($id){
         TempOrder::create([
             'id' => Str::uuid(),
@@ -75,7 +69,22 @@ class UserViewController extends Controller
         ]);
         return back()->with('success','Berhasil menambahkan product ke keranjang');
     }
-
+    public function changeAddress(Request $request){
+        $validator = Validator::make($request->all(), [
+            'address' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->errors());
+        }
+        try {
+            $user = Auth::user();
+            $user->address = $request->input('address');
+            $user->save();
+            return back()->with('success','Berhasil mengubah alamat');
+        }catch (\Exception $exception){
+            return back()->with('error',$exception->getMessage());
+        }
+    }
     public function checkoutPage(){
         $payments = TypeOfPayment::all();
         $orders = TempOrder::where('id_user',Auth::user()->getAuthIdentifier())->get();
@@ -100,6 +109,7 @@ class UserViewController extends Controller
                     'id' => $product['id'],
                     'total' => $product['total']
                 ];
+                $this->minStock($product['id'],$product['total']);
                 array_push($productsData,$store_product);
             }
         }
@@ -133,4 +143,10 @@ class UserViewController extends Controller
         TempOrder::where('id',$id)->delete();
         return redirect('/checkout')->with('success','Kerjang berhasil dihapus');
     }
+    public function minStock($id,$total){
+        $product = Product::where('id',$id)->first();
+        $product->stock = $product->stock - $total;
+        $product->save();
+    }
+
 }

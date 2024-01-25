@@ -40,6 +40,9 @@
                                     <p class="mb-4 mb-md-0">
                                         {{$coffee->description}}
                                     </p>
+                                    <b class="mb-4 mb-md-0">
+                                        Stock : {{$coffee->stock}}
+                                    </b>
                                 </div>
                             </div>
                             <a href="{{route('to-checkout',$coffee->id)}}" class="btn btn-dark mt-2">Chekout</a>
@@ -84,6 +87,9 @@
                                         <p class="mb-4 mb-md-0">
                                             {{$food->description}}
                                         </p>
+                                        <b class="mb-4 mb-md-0">
+                                            Stock : {{$food->stock}}
+                                        </b>
                                     </div>
                                 </div>
                                 <a href="{{route('to-checkout',$food->id)}}" class="btn btn-dark mt-2">Chekout</a>
@@ -128,6 +134,9 @@
                                         <p class="mb-4 mb-md-0">
                                             {{$drink->description}}
                                         </p>
+                                        <b class="mb-4 mb-md-0">
+                                            Stock : {{$drink->stock}}
+                                        </b>
                                     </div>
                                 </div>
                                 <a href="{{route('to-checkout',$drink->id)}}" class="btn btn-dark mt-2">Chekout</a>
