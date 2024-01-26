@@ -71,7 +71,7 @@
                     <label for="type_of_service">Tipe Pelayanan</label>
                     <select name="type_of_service" id="type_of_service" class="form-control">
                         <option value="Ambil Ditempat">Ambil Ditempat</option>
-                        <option value="Antar">Antar [+10000-15000]</option>
+                        <option value="Antar">Antar [Dekat +10.000, Jauh +15.000]</option>
                         <option value="Kirim">Kirim [+25000]</option>
                     </select>
                 </div>
